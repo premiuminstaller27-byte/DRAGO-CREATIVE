@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#05070d"><meta name="description" content="DRAGO CREATIVE — posters, YouTube thumbnails, websites and simple Android apps."><title>Contact & Order | DRAGO CREATIVE</title><link rel="stylesheet" href="style.css"></head>
+<body><header><div class="wrap nav"><a class="brand" href="index.html">DRAGO <span>CREATIVE</span></a><nav aria-label="Main navigation"><a href="index.html" class="">Home</a><a href="services.html" class="">Services</a><a href="contact.html" class="active">Contact & Order</a></nav></div></header><main>
+<section class="wrap page-hero"><div class="eyebrow">Contact & order</div><h1 class="page-title">Let’s start your project.</h1><p class="lead">Choose a service and share a few details. The form prepares a WhatsApp message so you can send the request directly.</p></section>
+<section class="section" style="padding-top:10px"><div class="wrap contact-grid">
+<div class="card"><h2 style="margin-top:0">Send an order request</h2><form id="orderForm">
+<div class="field"><label for="service">Service</label><select id="service" required><option value="">Choose a service</option><option>Poster Design</option><option>YouTube Thumbnail</option><option>Simple Website</option><option>Simple Android App</option></select></div>
+<div class="field"><label for="customer">Your name</label><input id="customer" placeholder="Name" required></div>
+<div class="field"><label for="details">Project details</label><textarea id="details" placeholder="Tell us what you need, style, deadline, etc." required></textarea></div>
+<button class="btn" type="submit">Continue on WhatsApp →</button>
+<p class="notice">This opens WhatsApp with your message. It does not submit or store data on this website.</p></form></div>
+<div class="card"><div class="eyebrow">Direct contact</div><h2>Talk to us</h2><p class="muted">WhatsApp is the quickest way to discuss your project, availability and final price.</p><p><a class="btn" href="https://wa.me/919042479227?text=Hi%20DRAGO%20CREATIVE%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">WhatsApp: +91 90424 79227</a></p><hr style="border:0;border-top:1px solid #20334a;margin:24px 0"><div class="eyebrow">Payment method</div><h3>Google Pay (GPay)</h3><p class="muted">Confirm the quote with us before paying.</p><div class="upi" id="upi">egavalliramesh@oksbi</div><button class="btn secondary" type="button" id="copyUpi" style="margin-top:12px">Copy UPI ID</button><p class="notice" id="copyMsg" aria-live="polite"></p><p class="notice">Only pay after confirming the final amount. An order is confirmed only after the payment is verified in the recipient account. Never share your UPI PIN or OTP.</p></div>
+</div></section>
+<script>
+const params = new URLSearchParams(location.search);
+const requested = params.get('service');
+if (requested) { const select = document.getElementById('service'); for (const option of select.options) { if (option.text.toLowerCase() === requested.toLowerCase()) select.value = option.value; } }
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+ e.preventDefault();
+ const service = document.getElementById('service').value;
+ const name = document.getElementById('customer').value.trim();
+ const details = document.getElementById('details').value.trim();
+ const message = `Hi DRAGO CREATIVE!%0AName: ${encodeURIComponent(name)}%0AService: ${encodeURIComponent(service)}%0AProject details: ${encodeURIComponent(details)}%0APlease confirm the final price and delivery time.`;
+ window.open('https://wa.me/919042479227?text=' + message, '_blank', 'noopener');
+});
+document.getElementById('copyUpi').addEventListener('click', async function() {
+ const id = 'egavalliramesh@oksbi';
+ try { await navigator.clipboard.writeText(id); document.getElementById('copyMsg').textContent = 'UPI ID copied.'; }
+ catch(e) { document.getElementById('copyMsg').textContent = 'Copy this UPI ID: ' + id; }
+});
+</script></main><footer><div class="wrap foot"><span>© 2026 DRAGO CREATIVE · Create your legend.</span><span>WhatsApp: +91 90424 79227</span></div></footer></body></html>
